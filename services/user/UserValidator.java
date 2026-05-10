@@ -5,7 +5,10 @@ public class UserValidator {
         if (user.getUsername() == null) {
             throw new RuntimeException("Username is required");
         }
-        // BUG: Missing check for Email field
+        // FIX: Add validation for Email field
+        if (user.getEmail() == null || user.getEmail().isEmpty()) {
+            throw new RuntimeException("Email is required");
+        }
         System.out.println("User validated: " + user.getUsername());
     }
 }

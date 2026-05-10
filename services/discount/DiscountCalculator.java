@@ -2,7 +2,10 @@ package com.fixbot;
 
 public class DiscountCalculator {
     public int apply(int total, int count) {
-        // BUG: Division by zero if count is 0
+        // FIX: Prevent division by zero (ArithmeticException)
+        if (count == 0) {
+            return 0;
+        }
         return total / count;
     }
 }

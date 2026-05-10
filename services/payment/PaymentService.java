@@ -2,8 +2,11 @@ package com.fixbot;
 
 public class PaymentService {
     public void processPayment(String invoiceId) {
-        // BUG: Potential NullPointerException if invoice is not found
         Invoice invoice = findById(invoiceId);
+        // FIX: Add null check to prevent NullPointerException
+        if (invoice == null) {
+            throw new RuntimeException("Invoice not found: " + invoiceId);
+        }
         double amount = invoice.getAmount(); 
         System.out.println("Processing payment for amount: " + amount);
     }
